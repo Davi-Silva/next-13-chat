@@ -2,5 +2,15 @@
 
 .form {
   border: 1px solid $border-color;
-  border-radius: 0.3rem;
+  border-radius: 1rem;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0px 3px 3px $shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.heading {
+  font-size: 1rem;
 }

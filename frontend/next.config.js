@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  env: {
+    SOCKET_ENDPOINT: process.env.SOCKET_ENDPOINT,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,11 +1,10 @@
 import Creation from "@/components/Creation";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import styles from "./index.module.scss";
 
 export default function Home() {
   return (
-    <main>
+    <main className={styles.bg}>
       <Creation />
     </main>
   );

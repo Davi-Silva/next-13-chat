@@ -1,0 +1,11 @@
+@import "../../styles/global.scss";
+
+.button {
+  background-color: $primary;
+  color: white;
+  border: 1px solid darken($primary, 30%);
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+}

@@ -1,2 +1,12 @@
+@import "../../styles/global.scss";
+
 .input {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: inset 0px 0px 8px 0px $shadow;
+  border: 1px solid $border-color;
+  &:focus {
+    outline: none;
+  }
 }

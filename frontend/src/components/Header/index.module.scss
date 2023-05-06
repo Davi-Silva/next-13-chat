@@ -1,0 +1,42 @@
+@import "../../styles/global.scss";
+
+.container {
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+  border-bottom: 1px solid $border-color;
+}
+
+.roomIdIconContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  h1,
+  svg {
+    font-size: 1.2rem;
+  }
+}
+
+.settingsBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 0.4rem;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  :focus {
+    outline: none;
+  }
+  span {
+    background-color: $border-color;
+    height: 0.35rem;
+    width: 0.35rem;
+    display: block;
+    border-radius: 50rem;
+  }
+}

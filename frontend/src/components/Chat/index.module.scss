@@ -2,5 +2,12 @@
 
 .container {
   border: 1px solid $border-color;
-  border-radius: 0.3rem;
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: 0px 3px 3px $shadow;
+  width: 60%;
+  height: 80%;
+  display: grid;
+  grid-template-rows: 3.5rem 1fr 3.5rem;
+  overflow: hidden;
 }
