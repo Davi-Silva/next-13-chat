@@ -1,18 +1,19 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-import Header from "../Header";
 import BodyMessage from "../BodyMessage";
+import Header from "../Header";
 
-import styles from "./index.module.scss";
-import { ChatProps, User } from "./types";
-import ChatInput from "../ChatInput";
-import { getLocalStorage } from "@/utils/localStorage";
 import { socket } from "@/services/socketio";
+import { getLocalStorage } from "@/utils/localStorage";
+import ChatInput from "../ChatInput";
+import styles from "./index.module.scss";
+import { ChatProps, Message, User } from "./types";
 
 const Chat: FC<ChatProps> = ({ room }) => {
   const [user, setUser] = useState<User>();
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     const data = getLocalStorage("user");
@@ -24,16 +25,32 @@ const Chat: FC<ChatProps> = ({ room }) => {
       console.log("connecting...");
     });
 
+    socket.on("botSendMessage", (payload: any) => {
+      console.log(payload);
+    });
+
     return () => {
-      socket.off();
+      socket.close();
     };
   }, []);
+
+  const sendMessage = (message: string) => {
+    const newMessage = {
+      username: user!.username,
+      name: user!.name,
+      message,
+    };
+    setMessages((prev) => [...prev, newMessage]);
+    socket.emit("sendMessage", newMessage);
+  };
+
+  console.log(messages);
 
   return (
     <div className={styles.container}>
       <Header room={room} />
-      <BodyMessage user={user} />
-      <ChatInput />
+      <BodyMessage user={user} messages={messages} />
+      <ChatInput sendMessage={sendMessage} />
     </div>
   );
 };

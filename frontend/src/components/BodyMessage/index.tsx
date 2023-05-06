@@ -1,18 +1,16 @@
 "use client";
 
-import React, { FC, useState } from "react";
-
-import data from "./data";
+import React, { FC } from "react";
 
 import styles from "./index.module.scss";
 import { BodyMessageProps } from "./types";
 
-const BodyMessage: FC<BodyMessageProps> = ({ user }) => {
+const BodyMessage: FC<BodyMessageProps> = ({ user, messages }) => {
   return (
     <>
       {user && (
         <div className={styles.container}>
-          {data.map((message, index) => (
+          {messages.map((message, index) => (
             <div
               key={index}
               className={`${
