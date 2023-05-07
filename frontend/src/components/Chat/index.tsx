@@ -25,14 +25,42 @@ const Chat: FC<ChatProps> = ({ room }) => {
       console.log("connecting...");
     });
 
-    socket.on("botSendMessage", (payload: any) => {
-      console.log(payload);
+    socket.on("message", (payload) => {
+      console.log({ payload });
+      appendMessage(payload);
+    });
+
+    socket.on("join", (payload: any) => {
+      console.log({ joinPayload: payload });
+
+      appendMessage({
+        username: "bot",
+        name: "Bot",
+        message: `${payload.id} has join the chat`,
+      });
+    });
+
+    socket.on("disconnected", (payload: any) => {
+      appendMessage({
+        username: "bot",
+        name: "Bot",
+        message: `${payload.id} has disconnected`,
+      });
     });
 
     return () => {
       socket.close();
     };
   }, []);
+
+  const appendMessage = (payload: any) => {
+    const newMessage = {
+      username: payload.username,
+      name: payload.name,
+      message: payload.message,
+    };
+    setMessages((prev) => [...prev, newMessage]);
+  };
 
   const sendMessage = (message: string) => {
     const newMessage = {
@@ -41,10 +69,8 @@ const Chat: FC<ChatProps> = ({ room }) => {
       message,
     };
     setMessages((prev) => [...prev, newMessage]);
-    socket.emit("sendMessage", newMessage);
+    socket.emit("message", newMessage);
   };
-
-  console.log(messages);
 
   return (
     <div className={styles.container}>

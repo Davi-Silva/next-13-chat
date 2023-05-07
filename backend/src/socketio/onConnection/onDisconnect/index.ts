@@ -1,10 +1,8 @@
 import { Socket } from "socket.io";
 
-import { io } from "../..";
-import registerChatHandlers from "../../handlers/chat";
-
-const onDisconnect = () => {
+const onDisconnect = (socket: Socket) => {
   console.log("disconnected...");
+  socket;
 };
 
 export default onDisconnect;
